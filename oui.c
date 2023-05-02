@@ -10,6 +10,38 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = -1;
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	if (str)
+	{
+		while (s1[++j])
+			str[i++] = s1[j];
+		j = -1;
+		while (s2[++j])
+			str[i++] = s2[j];
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 void	ft_putstr(char *str)
 {
 	int	i;
@@ -75,19 +107,83 @@ char	*ft_itoa(int n)
 int	touch(int key_touch, void *param)
 {
 	void	*mlx_ptr;
+	t_test	oui;
+	int		la;
+	int		lo;
+	int		img_la;
+	int		img_lo;
+	static int		x;
+	static int		y;
+	static int		c;
 
+	if (!x || !y || !c)
+	{
+		c = 0;
+		printf ("%s\n", ft_itoa(c));
+		x = 440;
+		y = 200;
+	}
 	mlx_ptr = mlx_init();
+	oui.perso = mlx_xpm_file_to_image(mlx_ptr, "perso.xpm", &lo, &la);
+	oui.map = mlx_xpm_file_to_image(oui.mlx_ptr, "map.xpm", &img_lo, &img_la);
 	if (key_touch == 53)
 		mlx_destroy_window(mlx_ptr, param);
-	param = NULL;
 	if (key_touch == 0 || key_touch == 123)
-		ft_putstr("Gauche ");
+	{
+		if (x - 30 >= 0)
+		{
+			c++;
+			x -= 30;
+		}
+		mlx_clear_window(mlx_ptr, param);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
+		mlx_string_put(mlx_ptr, param, 925, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
+		printf("%s\n", ft_itoa(c));
+		//ft_putstr("Gauche ");
+	}
 	if (key_touch == 13 || key_touch == 126)
-		ft_putstr("Haut ");
+	{
+		if (y - 30 >= 0)
+		{
+			c++;
+			y -= 30;
+		}
+		mlx_clear_window(mlx_ptr, param);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
+		mlx_string_put(mlx_ptr, param, 925, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
+		printf("%s\n", ft_itoa(c));
+		//ft_putstr("Haut ");
+	}
 	if (key_touch == 2 || key_touch == 124)
-		ft_putstr("Droite ");
+	{
+		if (x + 30 <= 994)
+		{
+			c++;
+			x += 30;
+		}
+		mlx_clear_window(mlx_ptr, param);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
+		mlx_string_put(mlx_ptr, param, 925, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
+		printf("%s\n", ft_itoa(c));
+		//ft_putstr("Droite ");
+	}
 	if (key_touch == 1 || key_touch == 125)
-		ft_putstr("Bas ");
+	{
+		if (y + 30 <= 738)
+		{
+			c++;
+			y += 30;
+		}
+		mlx_clear_window(mlx_ptr, param);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
+		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
+		mlx_string_put(mlx_ptr, param, 925, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
+		printf("%s\n", ft_itoa(c));
+		//ft_putstr("Bas ");
+	}
 	return (1);
 }
 
@@ -99,9 +195,8 @@ int main(void)
 	int		lo;
 	int		la;
 	int		i;
-	int		j;
 
-	j = 0;
+	i = 0;
 	oui.mlx_ptr = mlx_init();
 	oui.window = mlx_new_window(oui.mlx_ptr, 1024, 768, "oui");
 	oui.map = mlx_xpm_file_to_image(oui.mlx_ptr, "map.xpm", &img_lo, &img_la);
@@ -109,20 +204,8 @@ int main(void)
 	mlx_string_put(oui.mlx_ptr, oui.window, 925, 20, 0xFFFFFF, "Score:");
 	oui.perso = mlx_xpm_file_to_image(oui.mlx_ptr, "perso.xpm", &lo, &la);
 	mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.perso, 440, 200);
-	oui.rondin = mlx_xpm_file_to_image(oui.mlx_ptr, "rondin.xpm", &lo, &la);
-	while (j <= 768)
-	{
-		i = 0;
-		if (j == 0 || j == 768)
-		{
-			while (i + 20 <= 1024)
-			{
-				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.rondin, i, j);
-				i += 20;
-			}
-		}
-		else if (j != 0 || )
-	}
+	if (i == 1)
+		mlx_clear_window(oui.mlx_ptr, oui.window);
 	mlx_hook(oui.window, 2, 0, touch, oui.window);
 	mlx_loop(oui.mlx_ptr);
 }
