@@ -127,7 +127,7 @@ int	touch(int key_touch, void *param)
 	oui.perso = mlx_xpm_file_to_image(mlx_ptr, "perso.xpm", &lo, &la);
 	oui.map = mlx_xpm_file_to_image(oui.mlx_ptr, "map.xpm", &img_lo, &img_la);
 	if (key_touch == 53)
-		mlx_destroy_window(mlx_ptr, param);
+		exit(0);
 	if (key_touch == 0 || key_touch == 123)
 	{
 		if (x - 30 >= 0)
@@ -204,6 +204,8 @@ int main(void)
 	mlx_string_put(oui.mlx_ptr, oui.window, 925, 20, 0xFFFFFF, "Score: 0");
 	oui.perso = mlx_xpm_file_to_image(oui.mlx_ptr, "perso.xpm", &lo, &la);
 	mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.perso, 440, 200);
-	mlx_hook(oui.window, 2, 0, touch, oui.window);
+	mlx_loop_hook(oui.mlx_ptr, touch, oui.window);
 	mlx_loop(oui.mlx_ptr);
+	if (mlx_destroy_window(oui.mlx_ptr, oui.window))
+		exit(0);
 }
