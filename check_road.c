@@ -6,13 +6,13 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:46:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 17:43:13 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:55:27 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_road(char **map, int x, int y)
+int	check_road(char **map, int x, int y)
 {
 	if (map[y][x] != '1' && map[y][x] != 'X')
 	{
@@ -22,24 +22,20 @@ void	check_road(char **map, int x, int y)
 		check_road(map, x - 1, y);
 		check_road(map, x + 1, y);
 	}
-	y = 1;
-	x = 1;
-	// printf("%s\n", map[0]);
-	// printf("%s\n", map[1]);
-	// printf("%s\n", map[2]);
-	// printf("%s\n", map[3]);
-	// printf("%s\n", map[4]);
-	while (map[y][x])
+	y = 0;
+	x = 0;
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
 		{
 			if (map[y][x] != '0' && map[y][x] != 'X' && map[y][x] != '1')
-				ft_exit();
+				return (0);
 			x++;
 		}
 		y++;
 	}
+	return (1);
 }
 
 void	map_road(char *str)
@@ -47,6 +43,7 @@ void	map_road(char *str)
 	char	**map;
 	int		x;
 	int		y;
+	int		i;
 
 	y = 0;
 	x = 0;
@@ -65,5 +62,7 @@ void	map_road(char *str)
 		y++;
 	}
 	printf ("x = %d,y = %d\n", x, y);
-	check_road(map, x, y);
+	i = check_road(map, x, y);
+	if (i == 0)
+		ft_exit();
 }
