@@ -204,8 +204,7 @@ int main(void)
 	mlx_string_put(oui.mlx_ptr, oui.window, 925, 20, 0xFFFFFF, "Score: 0");
 	oui.perso = mlx_xpm_file_to_image(oui.mlx_ptr, "perso.xpm", &lo, &la);
 	mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.perso, 440, 200);
-	mlx_loop_hook(oui.mlx_ptr, touch, oui.window);
+	mlx_hook(oui.window, 2, 0, touch, oui.window);
 	mlx_loop(oui.mlx_ptr);
-	if (mlx_destroy_window(oui.mlx_ptr, oui.window))
-		exit(0);
+	
 }

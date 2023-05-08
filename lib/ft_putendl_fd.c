@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/27 16:40:34 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/03/28 19:30:18 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	int	i;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+	ft_putchar_fd('\n', fd);
 }

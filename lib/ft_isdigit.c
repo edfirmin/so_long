@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edfirmin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/21 15:47:49 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/03/21 16:02:23 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-void	ft_exit(void)
+int	ft_isdigit(int c)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
-
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	if (c < '0' || c > '9')
+		return (0);
+	return (1);
 }

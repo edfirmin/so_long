@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/31 11:51:19 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/03/31 13:49:48 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	size_t	i;
+	size_t	j;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	i = 0;
+	if (*needle == 0)
+		return ((char *)haystack);
+	if (*haystack == 0 || ft_strlen(needle) > len)
+		return (0);
+	while (len > i)
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j] && len > i + j)
+		{
+			j++;
+			if (!needle[j])
+				return ((char *)&haystack[i]);
+		}
+		i++;
+	}
+	return (0);
 }

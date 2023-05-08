@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/27 18:42:25 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/03/29 13:13:14 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdlib.h>
 
-void	ft_exit(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	size_t	i;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	i = 0;
+	while (i != len)
+	{
+		((unsigned char *) b)[i] = (char)c;
+		i++;
+	}
+	return (b);
 }

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/04/08 12:47:43 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/04/08 12:47:48 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+t_list	*ft_lstlast(t_list *lst)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
-
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

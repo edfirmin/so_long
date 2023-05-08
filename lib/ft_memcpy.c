@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/29 13:16:00 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/03/29 16:05:32 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	size_t	i;
+	char	*str;
+	char	*sstr;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	str = (char *)dst;
+	sstr = (char *)src;
+	while (i < n)
+	{
+		str[i] = sstr[i];
+		i++;
+	}
+	return ((void *)str);
 }

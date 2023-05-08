@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/04/08 12:46:33 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/04/08 12:46:40 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	t_list	*tempo;
+	t_list	*tempo2;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	tempo = *lst;
+	if (*lst)
+	{
+		while (tempo)
+		{
+			tempo2 = tempo->next;
+			del(tempo->content);
+			free(tempo);
+			tempo = tempo2;
+		}
+		*lst = NULL;
+	}
 }

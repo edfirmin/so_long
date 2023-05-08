@@ -6,13 +6,14 @@
 #    By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 14:29:28 by edfirmin          #+#    #+#              #
-#    Updated: 2023/05/05 08:17:22 by edfirmin         ###   ########.fr        #
+#    Updated: 2023/05/08 17:45:08 by edfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRC = element_map_check.c utile1.c utile2.c
+SRC = map_check.c utile1.c check_close_map.c check_elem.c check_no_elem.c \
+check_rect.c check_road.c
 
 FLG = -Wall -Wextra -Werror
 
@@ -23,12 +24,15 @@ OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	@gcc -I /usr/local/include $(FLG) $(OBJ) -L /usr/local/ -lmlx -framework OpenGl -framework AppKit -o $(NAME)
+$(NAME) : $(OBJ) $(LIB) Makefile
+	cd lib ; make
+	@gcc -I /usr/local/include $(FLG) $(OBJ) lib/libft.a -L /usr/local/ -lmlx -framework OpenGl -framework AppKit -o $(NAME)
 clean :
 	@rm -f $(OBJ)
+	cd lib ; make clean
 
 fclean : clean
 	@rm -f $(NAME)
+	cd lib ; make fclean
 
 re : fclean all

@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/31 15:20:37 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/03/31 17:25:52 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	size_t	i;
+	char	*str;
+	char	*sstr;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	i = -1;
+	str = (char *)dst;
+	sstr = (char *)src;
+	if (!src && !dst)
+		return (0);
+	if (str > sstr)
+	{
+		while (len > 0)
+		{
+			len--;
+			str[len] = sstr[len];
+		}
+	}
+	else
+	{
+		while (++i < len)
+		{
+			str[i] = sstr[i];
+		}
+	}
+	return (str);
 }

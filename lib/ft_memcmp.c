@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/30 09:58:56 by edilson           #+#    #+#             */
+/*   Updated: 2023/04/03 12:48:23 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	size_t			i;
+	unsigned char	*str;
+	unsigned char	*sstr;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	i = 0;
+	str = (unsigned char *)s1;
+	sstr = (unsigned char *)s2;
+	if (n == 0 || str == sstr)
+		return (0);
+	while (n)
+	{
+		if (str[i] != sstr[i])
+			return (str[i] - sstr[i]);
+		i++;
+		n--;
+	}
+	return (0);
 }

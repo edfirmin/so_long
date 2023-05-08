@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/03/31 14:14:25 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/04/03 12:47:03 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_exit(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	printf("%s\n", "Error");
-	exit(0);
-}
+	void	*mem;
 
-void	*ft_free(char *str1, char *str2)
-{
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	if (count == 0 || size == 0)
+	{
+		mem = malloc(0);
+		return (mem);
+	}
+	mem = malloc(count * size);
+	if (!mem)
+		return (0);
+	ft_bzero(mem, count * size);
+	return (mem);
 }

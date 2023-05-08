@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utile1.c                                           :+:      :+:    :+:   */
+/*   check_elem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/05/08 13:21:21 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/05/08 14:00:18 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_exit(void)
+int	element(char *src, char c)
 {
-	printf("%s\n", "Error");
-	exit(0);
+	int	j;
+	int	i;
+
+	j = 0;
+	i = 0;
+	if (!src)
+		return (0);
+	while (src[i])
+	{
+		if (src[i] == c)
+			j++;
+		i++;
+	}
+	return (j);
 }
 
-void	*ft_free(char *str1, char *str2)
+
+void	map_elem(char *str)
 {
-	if (str1)
-		free(str1);
-	if (str2)
-		free(str2);
-	return (NULL);
+	if (element(str, 'P') != 1)
+		ft_exit();
+	else if (element(str, 'E') != 1)
+		ft_exit();
+	else if (element(str, 'C') == 0)
+		ft_exit();
 }
