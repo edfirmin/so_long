@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 09:27:45 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:04:04 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ typedef struct s_test
 	void	*window;
 	void	*map;
 	void	*perso;
-	void	*rondin;
+	void	*wall;
+	void	*colec;
+	void	*exit;
+	int		k;
+	int		l;
 }				t_test;
 
 void	*ft_free(char *str1, char *str2);
@@ -38,5 +42,6 @@ void	map_rect(char *str);
 void	map_elem(char *str);
 void	map_no_elem(char *buffer);
 void	map_road(char *str);
+char	*map_check(int fd);
 
 #endif

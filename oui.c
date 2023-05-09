@@ -5,105 +5,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = -1;
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	if (str)
-	{
-		while (s1[++j])
-			str[i++] = s1[j];
-		j = -1;
-		while (s2[++j])
-			str[i++] = s2[j];
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-static int	size_str(int n)
-{
-	int	i;
-
-	i = 0;
-	if (n == -2147483648)
-	{
-		i = 11;
-		return (i);
-	}
-	if (n < 0)
-	{
-		n = -n;
-		i++;
-	}
-	while (n >= 10)
-	{
-		i++;
-		n = n / 10;
-	}
-	i++;
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	unsigned int	nbr;
-	int				i;
-	char			*str;
-
-	i = size_str(n);
-	if (n < 0)
-		nbr = -n;
-	else
-		nbr = n;
-	str = malloc(sizeof(char) * (i + 1));
-	if (str == 0)
-		return (0);
-	str[i--] = '\0';
-	while (i >= 0)
-	{
-		str[i] = nbr % 10 + '0';
-		nbr = nbr / 10;
-		i--;
-	}
-	if (n < 0)
-		str[0] = '-';
-	return (str);
-}
-
 int	touch(int key_touch, void *param)
 {
 	void	*mlx_ptr;
@@ -187,24 +88,115 @@ int	touch(int key_touch, void *param)
 	return (1);
 }
 
-int main(void)
+int	len_cont(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	return (i);
+}
+
+int	lon_cont(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			j++;
+		i++;
+	}
+	return (j);
+}
+
+int main(int argc, char **argv)
 {
 	t_test	oui;
 	int		img_lo;
 	int		img_la;
-	int		lo;
-	int		la;
+	int		len;
+	int		lon;
 	int		i;
+	int		j;
+	int		fd;
+	char	*map;
+	char	**smap;
+	int		x;
+	int		y;
+	int		a;
+	int		b;
+	int		f;
+	int		g;
+	int		o;
+	int		p;
+	int		w;
+	int		z;
+	int		u;
 
-	i = 0;
+	map = NULL;
+	fd = -1;
+	if (argc == 2)
+	{
+		if (ft_strstr(argv[1], ".ber"))
+			fd = open(argv[1], O_RDONLY);
+		else
+			ft_exit(9);
+		map = map_check(fd);
+	}
+	else
+		ft_exit(8);
+	len = len_cont(map);
+	lon = lon_cont(map);
+	smap = ft_split(map, '\n');
 	oui.mlx_ptr = mlx_init();
-	oui.window = mlx_new_window(oui.mlx_ptr, 1024, 768, "oui");
+	oui.window = mlx_new_window(oui.mlx_ptr, len * 50, lon * 50, "oui");
 	oui.map = mlx_xpm_file_to_image(oui.mlx_ptr, "map.xpm", &img_lo, &img_la);
-	mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.map, 0, 0);
-	mlx_string_put(oui.mlx_ptr, oui.window, 925, 20, 0xFFFFFF, "Score: 0");
-	oui.perso = mlx_xpm_file_to_image(oui.mlx_ptr, "perso.xpm", &lo, &la);
-	mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.perso, 440, 200);
-	mlx_hook(oui.window, 2, 0, touch, oui.window);
+	oui.wall = mlx_xpm_file_to_image(oui.mlx_ptr, "wall.xpm", &f, &g);
+	oui.perso = mlx_xpm_file_to_image(oui.mlx_ptr, "perso.xpm", &x, &y);
+	oui.colec = mlx_xpm_file_to_image(oui.mlx_ptr, "colec.xpm", &i, &j);
+	oui.exit = mlx_xpm_file_to_image(oui.mlx_ptr, "exit.xpm", &a, &b);
+	z = 0;
+	w = 0;
+	u = len;
+	while (lon > 0)
+	{
+		len = u;
+		w = 0;
+		while (len > 0)
+		{
+			mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.map, w, z);
+			w += 50;
+			len--;
+		}
+		lon--;
+		z += 50;
+	}
+	z = 0;
+	o = 0;
+	while (smap[o])
+	{
+		p = 0;
+		w = 0;
+		while (smap[o][p])
+		{
+			if (smap[o][p] == '1')
+				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.wall, w, z);
+			if (smap[o][p] == 'C')
+				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.colec, w, z);
+			if (smap[o][p] == 'E')
+				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.exit, w, z);
+			if (smap[o][p] == 'P')
+				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.perso, w, z);
+			w +=50;
+			p++;
+		}
+		z += 50;
+		o++;
+	}
 	mlx_loop(oui.mlx_ptr);
-	
-}
+ }
