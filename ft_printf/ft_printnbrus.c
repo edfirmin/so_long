@@ -1,37 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_no_elem.c                                    :+:      :+:    :+:   */
+/*   ft_printnbrus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 13:37:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 09:31:42 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/04/11 17:01:55 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/04/13 09:22:12 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	map_no_elem(char *buffer)
+static int	size_str(unsigned int n)
 {
-	int		i;
-	int		j;
-	char	**tab;
+	int	i;
 
-	j = 0;
-	tab = ft_split(buffer, '\n');
-	if (!tab)
-		ft_exit(0);
-	while (tab[j])
+	i = 0;
+	if (n < 0)
 	{
-		i = 0;
-		while (tab[j][i])
-		{
-			if (tab[j][i] != '1' && tab[j][i] != '0' && tab[j][i] != 'E'
-				&& tab[j][i] != 'P' && tab[j][i] != 'C')
-				ft_exit(7);
-			i++;
-		}
-		j++;
+		n = -n;
+		i++;
 	}
+	while (n >= 10)
+	{
+		i++;
+		n = n / 10;
+	}
+	i++;
+	return (i);
+}
+
+int	ft_printnbrus(unsigned int nbr)
+{
+	if (nbr < 0)
+	{
+		ft_printchar('-');
+		nbr = -nbr;
+	}
+	if (nbr >= 10)
+	{
+		ft_printnbr(nbr / 10);
+		ft_printchar(nbr % 10 + '0');
+	}
+	else
+		ft_printchar(nbr % 10 + '0');
+	return (size_str(nbr));
 }

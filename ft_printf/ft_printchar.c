@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_no_elem.c                                    :+:      :+:    :+:   */
+/*   ft_printchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 13:37:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 09:31:42 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/04/11 16:56:25 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/04/13 09:21:27 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	map_no_elem(char *buffer)
+int	ft_printchar(const char c)
 {
-	int		i;
-	int		j;
-	char	**tab;
-
-	j = 0;
-	tab = ft_split(buffer, '\n');
-	if (!tab)
-		ft_exit(0);
-	while (tab[j])
-	{
-		i = 0;
-		while (tab[j][i])
-		{
-			if (tab[j][i] != '1' && tab[j][i] != '0' && tab[j][i] != 'E'
-				&& tab[j][i] != 'P' && tab[j][i] != 'C')
-				ft_exit(7);
-			i++;
-		}
-		j++;
-	}
+	write(1, &c, 1);
+	return (1);
 }

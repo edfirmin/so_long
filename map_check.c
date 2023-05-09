@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:08:45 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 17:25:19 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:27:03 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,41 @@ char	*line(char *buffer, int fd)
 		buffer = ft_strjoin(buffer, str);
 	}
 	free(str);
+	if (!buffer[0])
+		ft_exit(0);
 	return (buffer);
 }
 
-void	main_fonc(int fd)
+char	*map_check(int fd)
 {
 	char		*buffer;
 
 	buffer = NULL;
 	if (fd == -1)
-		return ;
+		return (NULL);
 	buffer = line(buffer, fd);
 	map_elem(buffer);
+	map_no_elem(buffer);
 	map_rect(buffer);
 	map_close(buffer);
-	map_no_elem(buffer);
 	map_road(buffer);
+	return (buffer);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int	fd;
+	//char	*map;
 
-	fd = open("yep.ber", O_RDONLY);
-	main_fonc(fd);
+	fd = -1;
+	if (argc == 2)
+	{
+		if (ft_strstr(argv[1], ".ber"))
+			fd = open(argv[1], O_RDONLY);
+		else
+			ft_exit(9);
+		map_check(fd);
+	}
+	else
+		ft_exit(8);
 }

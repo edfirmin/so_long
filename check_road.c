@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:46:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 17:55:27 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:26:33 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	map_road(char *str)
 			break ;
 		y++;
 	}
-	printf ("x = %d,y = %d\n", x, y);
 	i = check_road(map, x, y);
 	if (i == 0)
-		ft_exit();
+		ft_exit(5);
 }

@@ -6,15 +6,35 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 09:14:04 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:09:39 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_exit(void)
+void	ft_exit(int i)
 {
-	printf("%s\n", "Error");
+	ft_printf("%s\n", "Error");
+	if (i == 0)
+		ft_printf("%s\n", "Map invalide !");
+	if (i == 1)
+		ft_printf("%s\n", "Il faut au moins un collectible sur la map !");
+	if (i == 2)
+		ft_printf("%s\n", "Il doit y avoir une sortie et une seule !");
+	if (i == 3)
+		ft_printf("%s\n", "Il doit y avoir un spawn et un seul !");
+	if (i == 4)
+		ft_printf("%s\n", "Map ouverte !");
+	if (i == 5)
+		ft_printf("%s\n", "Pas de chemin possible !");
+	if (i == 6)
+		ft_printf("%s\n", "La map n'est pas rectengulaire !");
+	if (i == 7)
+		ft_printf("%s\n", "Element inconnu");
+	if (i == 8)
+		ft_printf("%s\n", "Nombre d'argument invalide !");
+	if (i == 9)
+		ft_printf("%s\n", "La map doit être un fichier '.ber' !");
 	exit(0);
 }
 

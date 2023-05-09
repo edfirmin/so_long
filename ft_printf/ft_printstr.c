@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_no_elem.c                                    :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 13:37:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 09:31:42 by edfirmin         ###   ########.fr       */
+/*   Created: 2023/04/13 09:57:49 by edfirmin          #+#    #+#             */
+/*   Updated: 2023/04/13 10:42:46 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	map_no_elem(char *buffer)
+int	ft_printstr(char *str)
 {
-	int		i;
-	int		j;
-	char	**tab;
+	int	i;
 
-	j = 0;
-	tab = ft_split(buffer, '\n');
-	if (!tab)
-		ft_exit(0);
-	while (tab[j])
+	i = 0;
+	if (str == NULL)
+		str = "(null)";
+	while (str[i])
 	{
-		i = 0;
-		while (tab[j][i])
-		{
-			if (tab[j][i] != '1' && tab[j][i] != '0' && tab[j][i] != 'E'
-				&& tab[j][i] != 'P' && tab[j][i] != 'C')
-				ft_exit(7);
-			i++;
-		}
-		j++;
+		ft_printchar(str[i]);
+		i++;
 	}
+	return (i);
 }

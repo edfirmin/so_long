@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:06:52 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 13:08:31 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/09 09:30:52 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ void	close_check(int line, char *src, int len)
 	while (src[i] && src[i] != '\n')
 	{
 		if (src[i] != '1')
-			ft_exit();
+			ft_exit(4);
 		while (src[i] == '1')
 			i++;
 		if (src[i] == '\n')
 			i++;
 		else if (src[i] != '\0')
-			ft_exit();
+			ft_exit(4);
 		while (line - 2 > n)
 		{
 			if (src[i] == '1' && src[i + len - 1] == '1')
 				i += len + 1;
 			else
-				ft_exit();
+				ft_exit(4);
 			n++;
 		}
 	}

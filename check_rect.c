@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:12:30 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/08 13:16:45 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:29:22 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	check_rect(int nbofline, char *str)
 		j = i + 1;
 	}
 	if (i == nbofline)
-		ft_exit();
+		ft_exit(6);
 	while (k < nbofline)
 	{
 		if (str[i] != '\n')
-			ft_exit();
+			ft_exit(0);
 		i += j;
 		k++;
 	}
 	if (str[i] != '\0')
-		ft_exit();
+		ft_exit(0);
 }
 
 void	map_rect(char *str)
