@@ -8,7 +8,7 @@
 int	touch(int key_touch, void *param)
 {
 	void	*mlx_ptr;
-	t_test	oui;
+	t_img	oui;
 	int		la;
 	int		lo;
 	int		img_la;
@@ -88,115 +88,33 @@ int	touch(int key_touch, void *param)
 	return (1);
 }
 
-int	len_cont(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\n')
-		i++;
-	return (i);
-}
-
-int	lon_cont(char *str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			j++;
-		i++;
-	}
-	return (j);
-}
-
 int main(int argc, char **argv)
 {
-	t_test	oui;
-	int		img_lo;
-	int		img_la;
-	int		len;
-	int		lon;
-	int		i;
-	int		j;
-	int		fd;
+	t_img	ima;
+	t_int	val;
 	char	*map;
-	char	**smap;
-	int		x;
-	int		y;
-	int		a;
-	int		b;
-	int		f;
-	int		g;
-	int		o;
-	int		p;
-	int		w;
-	int		z;
-	int		u;
 
 	map = NULL;
-	fd = -1;
+	val.fd = -1;
 	if (argc == 2)
 	{
 		if (ft_strstr(argv[1], ".ber"))
-			fd = open(argv[1], O_RDONLY);
+			val.fd = open(argv[1], O_RDONLY);
 		else
 			ft_exit(9);
-		map = map_check(fd);
+		map = map_check(val.fd);
 	}
 	else
 		ft_exit(8);
-	len = len_cont(map);
-	lon = lon_cont(map);
-	smap = ft_split(map, '\n');
-	oui.mlx_ptr = mlx_init();
-	oui.window = mlx_new_window(oui.mlx_ptr, len * 50, lon * 50, "oui");
-	oui.map = mlx_xpm_file_to_image(oui.mlx_ptr, "map.xpm", &img_lo, &img_la);
-	oui.wall = mlx_xpm_file_to_image(oui.mlx_ptr, "wall.xpm", &f, &g);
-	oui.perso = mlx_xpm_file_to_image(oui.mlx_ptr, "perso.xpm", &x, &y);
-	oui.colec = mlx_xpm_file_to_image(oui.mlx_ptr, "colec.xpm", &i, &j);
-	oui.exit = mlx_xpm_file_to_image(oui.mlx_ptr, "exit.xpm", &a, &b);
-	z = 0;
-	w = 0;
-	u = len;
-	while (lon > 0)
-	{
-		len = u;
-		w = 0;
-		while (len > 0)
-		{
-			mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.map, w, z);
-			w += 50;
-			len--;
-		}
-		lon--;
-		z += 50;
-	}
-	z = 0;
-	o = 0;
-	while (smap[o])
-	{
-		p = 0;
-		w = 0;
-		while (smap[o][p])
-		{
-			if (smap[o][p] == '1')
-				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.wall, w, z);
-			if (smap[o][p] == 'C')
-				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.colec, w, z);
-			if (smap[o][p] == 'E')
-				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.exit, w, z);
-			if (smap[o][p] == 'P')
-				mlx_put_image_to_window(oui.mlx_ptr, oui.window, oui.perso, w, z);
-			w +=50;
-			p++;
-		}
-		z += 50;
-		o++;
-	}
-	mlx_loop(oui.mlx_ptr);
+	ima.smap = ft_split(map, '\n');
+	ima.mlx_ptr = mlx_init();
+	ima.window = mlx_new_window(ima.mlx_ptr, len_cont(map) * 50, lon_cont(map) * 50, "oui");
+	ima.map = mlx_xpm_file_to_image(ima.mlx_ptr, "map.xpm", &val.img_lo, &val.img_la);
+	ima.wall = mlx_xpm_file_to_image(ima.mlx_ptr, "wall.xpm", &val.f, &val.g);
+	ima.perso = mlx_xpm_file_to_image(ima.mlx_ptr, "perso.xpm", &val.x, &val.y);
+	ima.colec = mlx_xpm_file_to_image(ima.mlx_ptr, "colec.xpm", &val.i, &val.j);
+	ima.exit = mlx_xpm_file_to_image(ima.mlx_ptr, "exit.xpm", &val.a, &val.b);
+	base(ima.mlx_ptr, ima.window, ima.map, map);
+	base2(&ima);
+	mlx_loop(ima.mlx_ptr);
  }

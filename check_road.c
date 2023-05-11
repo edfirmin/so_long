@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:46:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 10:26:33 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:46:24 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_road(char **map, int x, int y)
 {
-	if (map[y][x] != '1' && map[y][x] != 'X')
+	if (map[y][x] != '1' && map[y][x] != 'X' && map[y][x] != 'E')
 	{
 		map[y][x] = 'X';
 		check_road(map, x, y - 1);
@@ -29,7 +29,7 @@ int	check_road(char **map, int x, int y)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] != '0' && map[y][x] != 'X' && map[y][x] != '1')
+			if (map[y][x] != '0' && map[y][x] != 'X' && map[y][x] != '1' && map[y][x] != 'E')
 				return (0);
 			x++;
 		}

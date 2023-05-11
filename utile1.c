@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 10:09:39 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:43:13 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,30 @@ void	*ft_free(char *str1, char *str2)
 	if (str2)
 		free(str2);
 	return (NULL);
+}
+
+int	len_cont(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	return (i);
+}
+
+int	lon_cont(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			j++;
+		i++;
+	}
+	return (j);
 }
