@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/11 12:38:20 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:53:54 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_img
 	void	*wall;
 	void	*colec;
 	void	*exit;
+	char	*mapp;
 }				t_img;
 
 typedef struct s_int
@@ -63,6 +64,7 @@ int		lon_cont(char *str);
 int		len_cont(char *str);
 void	base(void *mlx_ptr, void *window, void *map, char *str);
 void	base2(t_img *ima);
+void	base3(t_img *ima);
 
 
 #endif
