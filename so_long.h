@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/11 14:53:54 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:17:15 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ int		len_cont(char *str);
 void	base(void *mlx_ptr, void *window, void *map, char *str);
 void	base2(t_img *ima);
 void	base3(t_img *ima);
-
 
 #endif
