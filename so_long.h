@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/15 13:44:48 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:54:17 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,22 @@ typedef struct s_img
 
 typedef struct s_int
 {
-	int		i;
-	int		j;
-	int		img_lo;
-	int		img_la;
-	int		x;
-	int		y;
-	int		a;
-	int		b;
-	int		f;
-	int		g;
-	int		len;
-	int		lon;
-	int		fd;
-	int		n_colec;
+	int	i;
+	int	j;
+	int	img_lo;
+	int	img_la;
+	int	x;
+	int	y;
+	int	a;
+	int	b;
+	int	f;
+	int	g;
+	int	len;
+	int	lon;
+	int	fd;
+	int	n_colec;
+	int	p_x;
+	int	p_y;
 }				t_int;
 void	*ft_free(char *str1, char *str2);
 void	ft_exit(int i);
