@@ -5,87 +5,39 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	touch(int key_touch, void *param)
-{
-	void	*mlx_ptr;
-	t_img	oui;
-	int		la;
-	int		lo;
-	int		img_la;
-	int		img_lo;
-	static int		x;
-	static int		y;
-	static int		c;
+t_img	init(t_img	ima, char *map);
 
-	if (!x || !y || !c)
-	{
-		c = 0;
-		printf ("%s\n", ft_itoa(c));
-		x = 440;
-		y = 200;
-	}
-	mlx_ptr = mlx_init();
-	oui.perso = mlx_xpm_file_to_image(mlx_ptr, "perso.xpm", &lo, &la);
-	oui.map = mlx_xpm_file_to_image(oui.mlx_ptr, "map.xpm", &img_lo, &img_la);
+int	touch(int key_touch, void	*param)
+{
+	param = NULL;
+	if (key_touch == 13)
+		ft_printf("haut ");
+	if (key_touch == 1)
+		ft_printf("bas ");
+	if (key_touch == 0)
+		ft_printf("gauche ");
+	if (key_touch == 2)
+		ft_printf("droite ");
 	if (key_touch == 53)
 		exit(0);
-	if (key_touch == 0 || key_touch == 123)
-	{
-		if (x - 30 >= 0)
-		{
-			c++;
-			printf("%s\n", ft_itoa(c));
-			x -= 30;
-		}
-		mlx_clear_window(mlx_ptr, param);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
-		mlx_string_put(mlx_ptr, param, 910, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
-		//ft_putstr("Gauche ");
-	}
-	if (key_touch == 13 || key_touch == 126)
-	{
-		if (y - 30 >= 0)
-		{
-			c++;
-			printf("%s\n", ft_itoa(c));
-			y -= 30;
-		}
-		mlx_clear_window(mlx_ptr, param);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
-		mlx_string_put(mlx_ptr, param, 910, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
-		//ft_putstr("Haut ");
-	}
-	if (key_touch == 2 || key_touch == 124)
-	{
-		if (x + 30 <= 994)
-		{
-			c++;
-			printf("%s\n", ft_itoa(c));
-			x += 30;
-		}
-		mlx_clear_window(mlx_ptr, param);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
-		mlx_string_put(mlx_ptr, param, 910, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
-		//ft_putstr("Droite ");
-	}
-	if (key_touch == 1 || key_touch == 125)
-	{
-		if (y + 30 <= 738)
-		{
-			c++;
-			printf("%s\n", ft_itoa(c));
-			y += 30;
-		}
-		mlx_clear_window(mlx_ptr, param);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.map, 0, 0);
-		mlx_put_image_to_window(oui.mlx_ptr, param, oui.perso, x, y);
-		mlx_string_put(mlx_ptr, param, 910, 20, 0xFFFFFF, ft_strjoin("Score: ", ft_itoa(c)));
-		//ft_putstr("Bas ");
-	}
-	return (1);
+	return (0);
+}
+
+t_img	init(t_img	ima, char *map)
+{
+	t_int	val;
+
+	ima.smap = ft_split(map, '\n');
+	ima.mlx_ptr = mlx_init();
+	ima.window = mlx_new_window(ima.mlx_ptr, len_cont(map) * 50,
+			lon_cont(map) * 50, "oui");
+	ima.mapp = mlx_xpm_file_to_image(ima.mlx_ptr, "map.xpm",
+			&val.img_lo, &val.img_la);
+	ima.wall = mlx_xpm_file_to_image(ima.mlx_ptr, "wall.xpm", &val.f, &val.g);
+	ima.perso = mlx_xpm_file_to_image(ima.mlx_ptr, "perso.xpm", &val.x, &val.y);
+	ima.colec = mlx_xpm_file_to_image(ima.mlx_ptr, "colec.xpm", &val.i, &val.j);
+	ima.exit = mlx_xpm_file_to_image(ima.mlx_ptr, "exit.xpm", &val.a, &val.b);
+	return (ima);
 }
 
 int main(int argc, char **argv)
@@ -94,6 +46,7 @@ int main(int argc, char **argv)
 	t_int	val;
 
 	val.fd = -1;
+	ima.map = NULL;
 	if (argc == 2)
 	{
 		if (ft_strstr(argv[1], ".ber"))
@@ -104,16 +57,11 @@ int main(int argc, char **argv)
 	}
 	else
 		ft_exit(8);
-	ima.smap = ft_split(ima.map, '\n');
-	ima.mlx_ptr = mlx_init();
-	ima.window = mlx_new_window(ima.mlx_ptr, len_cont(ima.map) * 50, lon_cont(ima.map) * 50, "oui");
-	ima.mapp = mlx_xpm_file_to_image(ima.mlx_ptr, "map.xpm", &val.img_lo, &val.img_la);
-	ima.wall = mlx_xpm_file_to_image(ima.mlx_ptr, "wall.xpm", &val.f, &val.g);
-	ima.perso = mlx_xpm_file_to_image(ima.mlx_ptr, "perso.xpm", &val.x, &val.y);
-	ima.colec = mlx_xpm_file_to_image(ima.mlx_ptr, "colec.xpm", &val.i, &val.j);
-	ima.exit = mlx_xpm_file_to_image(ima.mlx_ptr, "exit.xpm", &val.a, &val.b);
+	ima = init(ima, ima.map);
+	val.n_colec = nb_colec(ima.smap);
 	base(ima.mlx_ptr, ima.window, ima.mapp, ima.map);
-	base2(&ima);
-	base3(&ima);
+	base2(ima);
+	base3(ima);
+	mlx_hook(ima.window, 2, 0, touch, NULL);
 	mlx_loop(ima.mlx_ptr);
- }
+}

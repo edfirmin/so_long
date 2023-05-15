@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:28:33 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/11 13:01:14 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:17:15 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	base(void *mlx_ptr, void *window, void *map, char *str)
 	}
 }
 
-void	base2(t_img *ima)
+void	base2(t_img ima)
 {
 	int	i;
 	int	j;
@@ -49,16 +49,18 @@ void	base2(t_img *ima)
 
 	y = 0;
 	j = 0;
-	while (ima->smap[j])
+	while (ima.smap[j])
 	{
 		i = 0;
 		x = 0;
-		while (ima->smap[j][i])
+		while (ima.smap[j][i])
 		{
-			if (ima->smap[j][i] == '1')
-				mlx_put_image_to_window(ima->mlx_ptr, ima->window, ima->wall, x, y);
-			if (ima->smap[j][i] == 'C')
-				mlx_put_image_to_window(ima->mlx_ptr, ima->window, ima->colec, x, y);
+			if (ima.smap[j][i] == '1')
+				mlx_put_image_to_window(ima.mlx_ptr, ima.window,
+					ima.wall, x, y);
+			if (ima.smap[j][i] == 'C')
+				mlx_put_image_to_window(ima.mlx_ptr, ima.window,
+					ima.colec, x, y);
 			x += 50;
 			i++;
 		}
@@ -67,7 +69,7 @@ void	base2(t_img *ima)
 	}
 }
 
-void	base3(t_img *ima)
+void	base3(t_img ima)
 {
 	int	i;
 	int	j;
@@ -76,16 +78,18 @@ void	base3(t_img *ima)
 
 	y = 0;
 	j = 0;
-	while (ima->smap[j])
+	while (ima.smap[j])
 	{
 		i = 0;
 		x = 0;
-		while (ima->smap[j][i])
+		while (ima.smap[j][i])
 		{
-			if (ima->smap[j][i] == 'P')
-				mlx_put_image_to_window(ima->mlx_ptr, ima->window, ima->perso, x, y);
-			if (ima->smap[j][i] == 'E')
-				mlx_put_image_to_window(ima->mlx_ptr, ima->window, ima->exit, x, y);
+			if (ima.smap[j][i] == 'P')
+				mlx_put_image_to_window(ima.mlx_ptr, ima.window,
+					ima.perso, x, y);
+			if (ima.smap[j][i] == 'E')
+				mlx_put_image_to_window(ima.mlx_ptr, ima.window,
+					ima.exit, x, y);
 			x += 50;
 			i++;
 		}

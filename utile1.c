@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:07:46 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/11 10:43:13 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:46:32 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,26 @@ int	lon_cont(char *str)
 		i++;
 	}
 	return (j);
+}
+
+int	nb_colec(char **str)
+{
+	int	i;
+	int	k;
+	int	j;
+
+	i = 0;
+	k = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == 'C')
+				k++;
+			j++;
+		}
+		i++;
+	}
+	return (k);
 }

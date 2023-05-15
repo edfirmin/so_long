@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/15 11:17:15 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:44:48 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_int
 	int		len;
 	int		lon;
 	int		fd;
+	int		n_colec;
 }				t_int;
 void	*ft_free(char *str1, char *str2);
 void	ft_exit(int i);
@@ -62,8 +63,9 @@ void	map_road(char *str);
 char	*map_check(int fd);
 int		lon_cont(char *str);
 int		len_cont(char *str);
+int		nb_colec(char **str);
 void	base(void *mlx_ptr, void *window, void *map, char *str);
-void	base2(t_img *ima);
-void	base3(t_img *ima);
+void	base2(t_img ima);
+void	base3(t_img ima);
 
 #endif
