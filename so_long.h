@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/15 17:54:17 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:08:23 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ typedef struct s_img
 	char	**smap;
 	void	*window;
 	void	*map;
-	void	*perso;
+	void	*up;
+	void	*down;
+	void	*left;
+	void	*right;
 	void	*wall;
 	void	*colec;
 	void	*exit;
@@ -38,18 +41,8 @@ typedef struct s_img
 
 typedef struct s_int
 {
-	int	i;
-	int	j;
-	int	img_lo;
-	int	img_la;
 	int	x;
 	int	y;
-	int	a;
-	int	b;
-	int	f;
-	int	g;
-	int	len;
-	int	lon;
 	int	fd;
 	int	n_colec;
 	int	p_x;
@@ -67,7 +60,16 @@ int		lon_cont(char *str);
 int		len_cont(char *str);
 int		nb_colec(char **str);
 void	base(void *mlx_ptr, void *window, void *map, char *str);
-void	base2(t_img ima);
-void	base3(t_img ima);
+int		event_check(int x, int y, int n, char **smap);
+void	base2(t_img *ima);
+void	base3(t_img *ima);
+void	base_up(t_img *ima);
+void	base_down(t_img *ima);
+void	base_left(t_img *ima);
+void	base_right(t_img *ima);
+int		up_mouv(t_img *param, int y, int n);
+int		down_mouv(t_img *param, int y, int n);
+int		right_mouv(t_img *param, int x, int n);
+int		left_mouv(t_img *param, int x, int n);
 
 #endif

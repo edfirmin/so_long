@@ -6,14 +6,15 @@
 #    By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 14:29:28 by edfirmin          #+#    #+#              #
-#    Updated: 2023/05/11 11:29:38 by edfirmin         ###   ########.fr        #
+#    Updated: 2023/05/16 12:12:47 by edfirmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 SRC = map_check.c utile1.c check_close_map.c check_elem.c check_no_elem.c \
-check_rect.c check_road.c oui.c print_map.c
+check_rect.c check_road.c so_long.c print_map.c print_mouv_utile.c \
+print_mouv.c
 
 FLG = -Wall -Wextra -Werror
 
