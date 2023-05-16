@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:32:52 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 14:51:49 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:15:32 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	ft_close(t_img *param)
+int	ft_close(void)
 {
-	if (mlx_destroy_window(param->mlx_ptr, param->window) != 1)
-		exit(0);
-	return (0);
+	exit (0);
+	return (1);
 }
 
 int	touch(int key_touch, t_img	*param)
@@ -93,6 +92,6 @@ int	main(int argc, char **argv)
 	base3(&ima);
 	ft_printf("0\n");
 	mlx_hook(ima.window, 2, 1L << 0, touch, &ima);
-	mlx_hook(ima.window, 4, 1L << 21, ft_close, &ima);
+	mlx_hook(ima.window, 17, 1L << 21, ft_close, &ima);
 	mlx_loop(ima.mlx_ptr);
 }
