@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:32:52 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 13:17:25 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:51:49 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,62 +16,11 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	event_check(int x, int y, int n, char **smap)
+int	ft_close(t_img *param)
 {
-	if (smap[y][x] == '0' || smap[y][x] == 'C')
-	{
-		smap[y][x] = 'P';
-		if (n == 1)
-			smap[y + 1][x] = '0';
-		if (n == 2)
-			smap[y - 1][x] = '0';
-		if (n == 3)
-			smap[y][x + 1] = '0';
-		if (n == 4)
-			smap[y][x - 1] = '0';
-		return (1);
-	}
-	if (smap[y][x] == 'E' && nb_colec(smap) == 0)
-		return (1);
+	if (mlx_destroy_window(param->mlx_ptr, param->window) != 1)
+		exit(0);
 	return (0);
-}
-
-int	init_val(char **smap, int x, int y)
-{
-	y = 0;
-	while (smap[y])
-	{
-		x = 0;
-		while (smap[y][x])
-		{
-			if (smap[y][x] == 'P')
-				break ;
-			x++;
-		}
-		if (smap[y][x] == 'P')
-			break ;
-		y++;
-	}
-	return (x);
-}
-
-int	init_val2(char **smap, int x, int y)
-{
-	y = 0;
-	while (smap[y])
-	{
-		x = 0;
-		while (smap[y][x])
-		{
-			if (smap[y][x] == 'P')
-				break ;
-			x++;
-		}
-		if (smap[y][x] == 'P')
-			break ;
-		y++;
-	}
-	return (y);
 }
 
 int	touch(int key_touch, t_img	*param)
@@ -86,15 +35,14 @@ int	touch(int key_touch, t_img	*param)
 		y = init_val2(param->smap, x, y);
 		n = 1;
 	}
-	if (param->smap[y][x] == 'E')
-		exit(0);
-	if (key_touch == 13 && event_check(x, y - 1, 1, param->smap) == 1)
+	param->m = n;
+	if (key_touch == 13 && event_check(x, y - 1, 1, param) == 1)
 		y = up_mouv(param, y, n++);
-	if (key_touch == 1 && event_check(x, y + 1, 2, param->smap) == 1)
+	if (key_touch == 1 && event_check(x, y + 1, 2, param) == 1)
 		y = down_mouv(param, y, n++);
-	if (key_touch == 0 && event_check(x - 1, y, 3, param->smap) == 1)
+	if (key_touch == 0 && event_check(x - 1, y, 3, param) == 1)
 		x = left_mouv(param, x, n++);
-	if (key_touch == 2 && event_check(x + 1, y, 4, param->smap) == 1)
+	if (key_touch == 2 && event_check(x + 1, y, 4, param) == 1)
 		x = right_mouv(param, x, n++);
 	if (key_touch == 53)
 		exit(0);
@@ -144,6 +92,7 @@ int	main(int argc, char **argv)
 	base2(&ima);
 	base3(&ima);
 	ft_printf("0\n");
-	mlx_hook(ima.window, 2, 0, touch, &ima);
+	mlx_hook(ima.window, 2, 1L << 0, touch, &ima);
+	mlx_hook(ima.window, 4, 1L << 21, ft_close, &ima);
 	mlx_loop(ima.mlx_ptr);
 }

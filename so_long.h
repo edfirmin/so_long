@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 13:08:23 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:28:02 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_img
 	void	*colec;
 	void	*exit;
 	char	*mapp;
+	int		m;
 }				t_img;
 
 typedef struct s_int
@@ -60,16 +61,21 @@ int		lon_cont(char *str);
 int		len_cont(char *str);
 int		nb_colec(char **str);
 void	base(void *mlx_ptr, void *window, void *map, char *str);
-int		event_check(int x, int y, int n, char **smap);
+int		event_check(int x, int y, int n, t_img *param);
 void	base2(t_img *ima);
 void	base3(t_img *ima);
 void	base_up(t_img *ima);
 void	base_down(t_img *ima);
 void	base_left(t_img *ima);
 void	base_right(t_img *ima);
+void	base_end(t_img *ima);
 int		up_mouv(t_img *param, int y, int n);
 int		down_mouv(t_img *param, int y, int n);
 int		right_mouv(t_img *param, int x, int n);
 int		left_mouv(t_img *param, int x, int n);
+void	end_mouv(t_img *param);
+int		event_check(int x, int y, int n, t_img *param);
+int		init_val(char **smap, int x, int y);
+int		init_val2(char **smap, int x, int y);
 
 #endif

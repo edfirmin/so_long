@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:04:10 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 13:05:48 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:29:27 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ int	right_mouv(t_img *param, int x, int n)
 	base_right(param);
 	x += 1;
 	return (x);
+}
+
+void	end_mouv(t_img *param)
+{
+	ft_printf("%d\n", param->m);
+	mlx_clear_window(param->mlx_ptr, param->window);
+	base(param->mlx_ptr, param->window, param->map, param->mapp);
+	base2(param);
+	base_end(param);
+	exit (0);
 }

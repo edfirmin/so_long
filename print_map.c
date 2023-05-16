@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:28:33 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 10:12:47 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:28:10 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ void	base3(t_img *ima)
 		x = 0;
 		while (ima->smap[j][i])
 		{
-			if (ima->smap[j][i] == 'P')
-				mlx_put_image_to_window(ima->mlx_ptr, ima->window,
-					ima->down, x, y);
 			if (ima->smap[j][i] == 'E')
 				mlx_put_image_to_window(ima->mlx_ptr, ima->window,
 					ima->exit, x, y);
+			if (ima->smap[j][i] == 'P')
+				mlx_put_image_to_window(ima->mlx_ptr, ima->window,
+					ima->down, x, y);
 			x += 50;
 			i++;
 		}
