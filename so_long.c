@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:32:52 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 15:15:32 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:04:04 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 	base(ima.mlx_ptr, ima.window, ima.map, ima.mapp);
 	base2(&ima);
 	base3(&ima);
-	ft_printf("0\n");
+	mlx_string_put(ima.mlx_ptr, ima.window, 0, 0, 0xFFFFFF, "0");
 	mlx_hook(ima.window, 2, 1L << 0, touch, &ima);
 	mlx_hook(ima.window, 17, 1L << 21, ft_close, &ima);
 	mlx_loop(ima.mlx_ptr);
