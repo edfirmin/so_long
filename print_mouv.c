@@ -6,7 +6,7 @@
 /*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:04:10 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 16:02:12 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/20 11:22:55 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	end_mouv(t_img *param)
 	base(param->mlx_ptr, param->window, param->map, param->mapp);
 	base2(param);
 	base_end(param);
-	mlx_string_put(param->mlx_ptr, param->window, 0, 0, 0xFFFFFF, ft_itoa(param->m));
+	mlx_string_put(param->mlx_ptr, param->window, 0, 0, 0xFFFFFF,
+		ft_itoa(param->m));
 	exit (0);
 }
