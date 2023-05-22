@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:52:33 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 09:57:38 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:29:08 by edilson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strstr(const char *haystack, const char *needle);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memmove(void *dst, const void *src, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_itoa(int n);
 char	*ft_strtrim(char const *s1, char const *set);

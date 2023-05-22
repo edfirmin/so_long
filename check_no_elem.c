@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_no_elem.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:37:59 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 09:31:42 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:20:45 by edilson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	map_no_elem(char *buffer)
 		}
 		j++;
 	}
+	tab_free(tab);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:44 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/20 11:22:05 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:35:06 by edilson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	end_mouv(t_img *param);
 int		event_check(int x, int y, int n, t_img *param);
 int		init_val(char **smap, int x, int y);
 int		init_val2(char **smap, int x, int y);
+void	tab_free(char **tab);
 
 #endif

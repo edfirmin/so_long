@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_mouv_utile.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:12:02 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 14:19:57 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:57:04 by edilson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,5 @@ void	base_end(t_img *ima)
 		y += 50;
 		j++;
 	}
+	tab_free(ima->smap);
 }

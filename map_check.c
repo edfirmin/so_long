@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:08:45 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/09 11:24:33 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:34:13 by edilson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*line(char *buffer, int fd)
 	int		i;
 
 	str = ft_calloc(2, sizeof(char));
-	buffer = ft_calloc(sizeof(char), 1);
+	if (!buffer)
+		buffer = ft_calloc(sizeof(char), 1);
 	if (!str || !buffer)
 		return (ft_free(str, buffer));
 	i = 1;
@@ -51,21 +52,3 @@ char	*map_check(int fd)
 	map_road(buffer);
 	return (buffer);
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	int		fd;
-// 	//char	*map;
-
-// 	fd = -1;
-// 	if (argc == 2)
-// 	{
-// 		if (ft_strstr(argv[1], ".ber"))
-// 			fd = open(argv[1], O_RDONLY);
-// 		else
-// 			ft_exit(9);
-// 		map_check(fd);
-// 	}
-// 	else
-// 		ft_exit(8);
-// }

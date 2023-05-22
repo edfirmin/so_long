@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utile2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:52:20 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/16 14:28:56 by edfirmin         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:12:01 by edilson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ int	init_val2(char **smap, int x, int y)
 		y++;
 	}
 	return (y);
+}
+void	tab_free(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while(tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
