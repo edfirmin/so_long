@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_mouv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edilson <edilson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: edfirmin <edfirmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:04:10 by edfirmin          #+#    #+#             */
-/*   Updated: 2023/05/22 15:32:31 by edilson          ###   ########.fr       */
+/*   Updated: 2023/05/23 09:19:21 by edfirmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	end_mouv(t_img *param)
 	base_end(param);
 	ft_printf("%d\n", param->m);
 	ft_free(NULL, param->mapp);
+	system("leaks so_long");
 	exit (0);
 }
